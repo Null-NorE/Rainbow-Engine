@@ -1,0 +1,18 @@
+# Xmake cache
+.xmake/
+build/
+
+# MacOS Cache
+.DS_Store
+
+# clangd
+.cache/
+.clang-format
+.clangd
+
+# vscode
+.vscode
+.VSCodeCounter/
+
+# target
+.build/
