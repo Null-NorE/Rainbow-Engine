@@ -16,6 +16,7 @@ set_encodings("source:utf-8")
  
 add_requires("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "eigen", "openmp")
 -- add_requires("glfw", {configs = {glfw_include = "vulkan"}})
+
 target("base")
     set_kind("headeronly")
     add_headerfiles("src/base/*.h")
@@ -30,15 +31,22 @@ target("extends")
     add_includedirs("src/extends", {public = true})
  
 target("RainbowEngine")
-    set_kind("binary")
-    add_files("src/*.cpp")
+    set_kind("headeronly")
     add_deps("base")
     add_deps("extends")
     add_headerfiles("src/core/*.h")
     add_headerfiles("src/core/*.hpp")
     add_defines("SDL_MAIN_HANDLED")
     add_packages("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "eigen", "openmp")
- 
+    add_includedirs("src/core", {public = true})
+
+target("defaultExample")
+    set_kind("binary")
+    add_deps("RainbowEngine")
+    add_defines("SDL_MAIN_HANDLED")
+    add_files("src/examples/default/MainWindow.cpp")
+    add_packages("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "eigen", "openmp")
+
 package("tiny_obj_loader")
     add_urls("https://github.com/tinyobjloader/tinyobjloader.git")
  
