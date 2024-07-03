@@ -30,7 +30,7 @@
 #include <unordered_map>
 #include <functional>
 
-#include "REInit.h"
+#include "RE_Init.h"
 
 int initSDLVideo() {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {

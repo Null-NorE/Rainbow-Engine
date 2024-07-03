@@ -25,6 +25,11 @@ target("RainbowEngine")
         "src/extends/drawing/*.h",
         "src/extends/window/*.h"
         )
+    add_headerfiles(
+        "src/*.hpp",
+        "src/extends/drawing/*.hpp",
+        "src/extends/window/*.hpp"
+        )
     add_defines("SDL_MAIN_HANDLED")
     add_packages("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "eigen", "openmp")
  

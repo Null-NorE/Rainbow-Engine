@@ -18,11 +18,11 @@
 #include <thread>
 #include <mutex>
 
-#include "REdebug.h"
+#include "RE_debug.h"
 
-#include "REFixpoint.h"
-#include "REmath.h"
+#include "RE_Fixpoint.h"
+#include "RE_math.h"
 // #include "REThreadPool.h"
-#include "RETexture.h"
+#include "RE_Texture.hpp"
 
 #include "MSWindow.h"
