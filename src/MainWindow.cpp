@@ -1,4 +1,5 @@
-#include "MainWindow.h"
+#include "core/MainWindow.h"
+#include "core/RE_Init.h"
 #include <cmath>
 #include <cstddef>
 #include <cstdint>

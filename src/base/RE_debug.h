@@ -1,6 +1,6 @@
 #pragma once
-#include <mutex>
 #include <iostream>
+#include <mutex>
 
 class REDebugStream {
 public:
@@ -13,15 +13,16 @@ public:
         isWriting.unlock();
     }
 
-    template<typename T>
+    template <typename T>
     REDebugStream& operator<<(const T& arg) {
-        //if constexpr (std::is_same_v<T, const char*> || std::is_same_v<T, std::string>) {
-        //    std::cout << arg; // 输入类型为文本时不加逗号
-        //} else 
-        if (_outputCount) {
-            std::cout << ", " << arg;
+        if constexpr (std::is_same_v<T, const char*> || std::is_same_v<T, std::string>) {
+            std::cout << arg; // 输入类型为文本时不加逗号
         } else {
-            std::cout << arg;
+            if (_outputCount) {
+                std::cout << ", " << arg;
+            } else {
+                std::cout << arg;
+            }
         }
         _outputCount++;
         return *this;
@@ -31,6 +32,7 @@ public:
         manipulator(std::cout);
         return *this;
     }
+
 private:
     static std::mutex isWriting;
     size_t _outputCount = 0;
@@ -48,7 +50,7 @@ void reBlank() {
 #ifdef GLM_ENABLE_EXPERIMENTAL
 
 // 通用的输出运算符<<重载模板
-template<typename T, glm::length_t L, glm::qualifier Q>
+template <typename T, glm::length_t L, glm::qualifier Q>
 std::ostream& operator<<(std::ostream& os, const glm::vec<L, T, Q>& vec) {
     os << "[";
     for (glm::length_t i = 0; i < L; ++i) {
@@ -61,7 +63,7 @@ std::ostream& operator<<(std::ostream& os, const glm::vec<L, T, Q>& vec) {
     return os;
 }
 
-template<glm::length_t L, glm::qualifier Q>
+template <glm::length_t L, glm::qualifier Q>
 std::ostream& operator<<(std::ostream& os, const glm::vec<L, uint8_t, Q>& vec) {
     os << "[";
     for (glm::length_t i = 0; i < L; ++i) {

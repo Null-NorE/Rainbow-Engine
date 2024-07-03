@@ -16,20 +16,26 @@ set_encodings("source:utf-8")
  
 add_requires("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "eigen", "openmp")
 -- add_requires("glfw", {configs = {glfw_include = "vulkan"}})
+target("base")
+    set_kind("headeronly")
+    add_headerfiles("src/base/*.h")
+    add_defines("SDL_MAIN_HANDLED")
+    add_packages("libsdl", "glm", "stb")
+    add_includedirs("src/base", {public = true})
+
+target("extends")
+    set_kind("headeronly")
+    add_headerfiles("src/extends/window/win64/*.h")
+    add_deps("base")
+    add_includedirs("src/extends", {public = true})
  
 target("RainbowEngine")
     set_kind("binary")
     add_files("src/*.cpp")
-    add_headerfiles(
-        "src/*.h",
-        "src/extends/drawing/*.h",
-        "src/extends/window/*.h"
-        )
-    add_headerfiles(
-        "src/*.hpp",
-        "src/extends/drawing/*.hpp",
-        "src/extends/window/*.hpp"
-        )
+    add_deps("base")
+    add_deps("extends")
+    add_headerfiles("src/core/*.h")
+    add_headerfiles("src/core/*.hpp")
     add_defines("SDL_MAIN_HANDLED")
     add_packages("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "eigen", "openmp")
  

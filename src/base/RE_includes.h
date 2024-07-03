@@ -5,6 +5,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/hash.hpp>
+#include "glm/detail/qualifier.hpp"
+#include "glm/fwd.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
@@ -17,12 +19,16 @@
 #include <atomic>
 #include <thread>
 #include <mutex>
+#include <cmath>
+#include <cstddef>
+#include <cstdint>
+#include <cstdlib>
+#include <functional>
+#include <initializer_list>
+#include <iterator>
+#include <numeric>
+#include <random>
+#include <tuple>
 
-#include "RE_debug.h"
-
-#include "RE_Fixpoint.h"
 #include "RE_math.h"
-// #include "REThreadPool.h"
-#include "RE_Texture.hpp"
-
-#include "MSWindow.h"
+#include "RE_debug.h"
