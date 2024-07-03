@@ -53,7 +53,7 @@ namespace RE {
         SDL_Texture* _texture;
     };
 
-    // TODO ExchangeChain
+    // TODO 交换链
     class ExchangeChain {
     public:
         ExchangeChain(){};

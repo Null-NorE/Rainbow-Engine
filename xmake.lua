@@ -20,7 +20,11 @@ add_requires("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "ei
 target("RainbowEngine")
     set_kind("binary")
     add_files("src/*.cpp")
-    add_headerfiles("src/*.h")
+    add_headerfiles(
+        "src/*.h",
+        "src/extends/drawing/*.h",
+        "src/extends/window/*.h"
+        )
     add_defines("SDL_MAIN_HANDLED")
     add_packages("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "eigen", "openmp")
  
