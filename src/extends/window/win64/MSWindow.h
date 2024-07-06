@@ -52,13 +52,4 @@ namespace RE {
         SDL_Renderer* _renderer;
         SDL_Texture* _texture;
     };
-
-    // TODO 交换链
-    class ExchangeChain {
-    public:
-        ExchangeChain(){};
-        ~ExchangeChain(){};
-
-    private:
-    };
 }

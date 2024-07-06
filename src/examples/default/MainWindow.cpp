@@ -1,5 +1,7 @@
-#include "MainWindow.h"
+#define RE_EXTEND_NOISE_GENERATOR
+#include "MainWindow.hpp"
 #include "RE_Init.h"
+#include "drawing/RE_NoiseGenerator.hpp"
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
@@ -58,7 +60,7 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        pt.generateFractalPerlinNoise();
+        generateFractalPerlinNoise<uint8_t>(&pt);
 
         // 在这里进行渲染
         // 在image数组中填充示例数据，这里用一些简单的颜色来模拟图像数据

@@ -3,5 +3,6 @@
 #include "RE_RawImage.hpp"
 #include "RE_Texture.hpp"
 #include "RE_Geometry2D.hpp"
+#include "RE_Painter.hpp"
 
 #include "window\win64\MSWindow.h"

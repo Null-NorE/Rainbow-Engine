@@ -23,3 +23,14 @@ int GetRefreshRate() {
 
     return dm.refresh_rate;
 }
+
+namespace RE {
+    // TODO 交换链
+    class ExchangeChain {
+    public:
+        ExchangeChain(){};
+        ~ExchangeChain(){};
+
+    private:
+    };
+}
