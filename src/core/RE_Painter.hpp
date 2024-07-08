@@ -54,6 +54,8 @@ namespace RE {
 
         rgba alphaMix(const rgba& src, const rgba& dst);
 
+        
+
 #ifdef RE_EXTEND_NOISE_GENERATOR
         template <typename TF>
         friend void generateCommonNoise(RE::Painter<TF>* painter);

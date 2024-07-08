@@ -1,13 +1,6 @@
 #define RE_EXTEND_NOISE_GENERATOR
-#include "MainWindow.hpp"
+#define RE_EXTEND_MS_WINDOWS_AMD64
 #include "RE_Init.h"
-#include "drawing/RE_NoiseGenerator.hpp"
-#include <cmath>
-#include <cstddef>
-#include <cstdint>
-#include <iostream>
-#include <limits>
-#include <omp.h>
 
 int main(int argc, char* argv[]) {
     // 初始化SDL
@@ -60,7 +53,7 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        generateFractalPerlinNoise<uint8_t>(&pt);
+        RE::generateFractalPerlinNoise<uint8_t>(&pt);
 
         // 在这里进行渲染
         // 在image数组中填充示例数据，这里用一些简单的颜色来模拟图像数据
