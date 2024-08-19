@@ -83,7 +83,7 @@ namespace RE {
             const size_t x = painter->texture.getCol(i);
             const size_t y = painter->texture.getRow(i);
             const float noiseValue = perlinNoise(painter, x, y, freq);
-            painter->drawPixel(x, y, rgb{static_cast<uint8_t>(noiseValue * 255)});
+            painter->drawPixel(x, y, RE::rgb{static_cast<uint8_t>(noiseValue * 255)});
         }
     }
 
@@ -98,7 +98,7 @@ namespace RE {
                 noiseValue += perlinNoise<T>(painter, x, y, freq) / freq * 2;
             }
 
-            painter->drawPixel(x, y, rgb{static_cast<uint8_t>(noiseValue * 255)});
+            painter->drawPixel(x, y, RE::rgb{static_cast<uint8_t>(noiseValue * 255)});
         }
     }
 }

@@ -7,9 +7,9 @@
 
 #include "MainWindow.hpp"
 
-#ifdef RE_EXTEND_MS_WINDOWS_AMD64
-#include "window\win64\MSWindow.h"
-#endif
-#ifdef RE_EXTEND_NOISE_GENERATOR
-#include "drawing/RE_NoiseGenerator.hpp"
-#endif
+// #ifdef RE_EXTEND_MS_WINDOWS_AMD64
+#include "window\win64\REX_MS_Window.h"
+// #endif
+// #ifdef RE_EXTEND_NOISE_GENERATOR
+#include "drawing/REX_NoiseGenerator.hpp"
+// #endif

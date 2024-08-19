@@ -1,13 +1,13 @@
 set_project("RainbowEngine")
  
-set_version("0.0.1")
+set_version("0.0.2")
  
 set_xmakever("2.8.8")
  
 set_allowedmodes("debug", "release")
 set_allowedplats("windows")
  
-set_languages("c++20")
+set_languages("cxx20")
  
 add_rules("mode.debug", "mode.release")
 add_rules("plugin.compile_commands.autoupdate", {outputdir = ".vscode"})
@@ -40,10 +40,11 @@ target("RainbowEngine")
     add_includedirs("src/core", {public = true})
 
 target("defaultExample")
-    set_kind("binary")
     set_default(true)
+    set_kind("binary")
     add_deps("RainbowEngine")
     add_deps("extends")
+    set_rundir(".")
     add_defines("SDL_MAIN_HANDLED")
     add_files("src/examples/default/MainWindow.cpp")
     add_packages("libsdl", "glm", "glfw", "vulkansdk", "tiny_obj_loader", "stb", "eigen", "openmp")
