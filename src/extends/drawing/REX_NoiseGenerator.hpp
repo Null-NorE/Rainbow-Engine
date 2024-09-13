@@ -41,7 +41,7 @@ namespace RE {
 
     template <typename T>
     float perlinNoise(RE::Painter<T>* painter, size_t x, size_t y, size_t freq) {
-        static std::vector<int> perm = generatePermutationTable();
+        static std::vector<int> perm = generatePermutationTable(); // ! STATIC !
         const size_t girdSize = std::max(painter->texture.width(), painter->texture.height()) / freq;
 
         const size_t x1 = (x / girdSize) & 255;

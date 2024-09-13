@@ -2,7 +2,7 @@
 // #include "REThreadPool.h"
 #include "RE_Geometry2D.hpp"
 #include "RE_Painter.hpp"
-#include "RE_RawImage.hpp"
+#include "RE_Buffer3D.hpp"
 #include "RE_Texture.hpp"
 
 #include "MainWindow.hpp"

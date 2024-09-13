@@ -1,5 +1,5 @@
 #pragma once
-#include "RE_RawImage.hpp"
+#include "RE_Buffer3D.hpp"
 #include "RE_includes.h"
 #include "RE_math.h"
 
@@ -10,7 +10,7 @@ namespace RE {
     using hrgba = glm::f32vec4;
 
     template <typename T>
-    class TextureBase : public RawImage<T> {
+    class TextureBase : public Buffer3D<T> {
     public:
         TextureBase();
         TextureBase(size_t width, size_t height, size_t channel);
@@ -19,7 +19,7 @@ namespace RE {
     };
 
     template <>
-    class TextureBase<uint8_t> : public RawImage<uint8_t> {
+    class TextureBase<uint8_t> : public Buffer3D<uint8_t> {
     public:
         TextureBase();
         TextureBase(size_t width, size_t height, size_t channel);
@@ -36,7 +36,7 @@ namespace RE {
     };
 
     template <>
-    class TextureBase<float> : public RawImage<float> {
+    class TextureBase<float> : public Buffer3D<float> {
     public:
         TextureBase();
         TextureBase(size_t width, size_t height, size_t channel);
@@ -124,22 +124,22 @@ namespace RE {
 
 namespace RE {
     template <typename T>
-    TextureBase<T>::TextureBase() : RawImage<T>(0, 0, 0) {}
+    TextureBase<T>::TextureBase() : Buffer3D<T>(0, 0, 0) {}
 
     template <typename T>
-    TextureBase<T>::TextureBase(size_t width, size_t height, size_t channel) : RawImage<T>(width, height, channel) {}
+    TextureBase<T>::TextureBase(size_t width, size_t height, size_t channel) : Buffer3D<T>(width, height, channel) {}
 
     template <typename T>
-    TextureBase<T>::TextureBase(T* arr, size_t width, size_t height, size_t channel) : RawImage<T>(arr, width, height, channel) {}
+    TextureBase<T>::TextureBase(T* arr, size_t width, size_t height, size_t channel) : Buffer3D<T>(arr, width, height, channel) {}
 
     template <typename T>
     TextureBase<T>::~TextureBase() {}
 
-    TextureBase<uint8_t>::TextureBase() : RawImage<uint8_t>(0, 0, 0) {}
+    TextureBase<uint8_t>::TextureBase() : Buffer3D<uint8_t>(0, 0, 0) {}
 
-    TextureBase<uint8_t>::TextureBase(size_t width, size_t height, size_t channel) : RawImage<uint8_t>(width, height, channel) {}
+    TextureBase<uint8_t>::TextureBase(size_t width, size_t height, size_t channel) : Buffer3D<uint8_t>(width, height, channel) {}
 
-    TextureBase<uint8_t>::TextureBase(uint8_t* arr, size_t width, size_t height, size_t channel) : RawImage<uint8_t>(arr, width, height, channel) {}
+    TextureBase<uint8_t>::TextureBase(uint8_t* arr, size_t width, size_t height, size_t channel) : Buffer3D<uint8_t>(arr, width, height, channel) {}
 
     TextureBase<uint8_t>::~TextureBase() {}
 
@@ -149,27 +149,27 @@ namespace RE {
 
     rgb TextureBase<uint8_t>::getRGB(size_t x, size_t y) {
         const size_t index = getIndex(x, y);
-        return rgb(_vec[index], _vec[index + 1], _vec[index + 2]);
+        return rgb(_data[index], _data[index + 1], _data[index + 2]);
     }
 
     rgb TextureBase<uint8_t>::getRGB(size_t index) {
-        return rgb(_vec[index], _vec[index + 1], _vec[index + 2]);
+        return rgb(_data[index], _data[index + 1], _data[index + 2]);
     }
 
     rgba TextureBase<uint8_t>::getRGBA(size_t x, size_t y) {
         const size_t index = getIndex(x, y);
-        return rgba(_vec[index], _vec[index + 1], _vec[index + 2], _vec[index + 3]);
+        return rgba(_data[index], _data[index + 1], _data[index + 2], _data[index + 3]);
     }
 
     rgba TextureBase<uint8_t>::getRGBA(size_t index) {
-        return rgba(_vec[index], _vec[index + 1], _vec[index + 2], _vec[index + 3]);
+        return rgba(_data[index], _data[index + 1], _data[index + 2], _data[index + 3]);
     }
 
     void TextureBase<uint8_t>::writePicture(const char* filename) {
         int width, height, channel;
         stbi_uc* pixels = stbi_load(filename, &width, &height, &channel, 0);
         setSize(width, height, channel);
-        memcpy(_vec.data(), pixels, sizeof(uint8_t) * width * height * channel);
+        memcpy(_data.data(), pixels, sizeof(uint8_t) * width * height * channel);
         stbi_image_free(pixels);
     }
 
@@ -181,50 +181,50 @@ namespace RE {
         return out;
     }
 
-    TextureBase<float>::TextureBase() : RawImage<float>(0, 0, 0) {}
+    TextureBase<float>::TextureBase() : Buffer3D<float>(0, 0, 0) {}
 
-    TextureBase<float>::TextureBase(size_t width, size_t height, size_t channel) : RawImage<float>(width, height, channel) {}
+    TextureBase<float>::TextureBase(size_t width, size_t height, size_t channel) : Buffer3D<float>(width, height, channel) {}
 
-    TextureBase<float>::TextureBase(float* arr, size_t width, size_t height, size_t channel) : RawImage<float>(arr, width, height, channel) {}
+    TextureBase<float>::TextureBase(float* arr, size_t width, size_t height, size_t channel) : Buffer3D<float>(arr, width, height, channel) {}
 
     TextureBase<float>::~TextureBase() {}
 
     hrgb TextureBase<float>::getRGB(size_t x, size_t y) {
         const size_t index = getIndex(x, y);
-        return hrgb(_vec[index], _vec[index + 1], _vec[index + 2]);
+        return hrgb(_data[index], _data[index + 1], _data[index + 2]);
     }
 
     hrgba TextureBase<float>::getRGBA(size_t x, size_t y) {
         const size_t index = getIndex(x, y);
-        return hrgba(_vec[index], _vec[index + 1], _vec[index + 2], _vec[index + 3]);
+        return hrgba(_data[index], _data[index + 1], _data[index + 2], _data[index + 3]);
     }
 
     void TextureBase<float>::setPixel(size_t x, size_t y, hrgb color) {
         const size_t index = getIndex(x, y);
-        _vec[index] = color.r;
-        _vec[index + 1] = color.g;
-        _vec[index + 2] = color.b;
+        _data[index] = color.r;
+        _data[index + 1] = color.g;
+        _data[index + 2] = color.b;
     }
 
     void TextureBase<float>::setPixel(size_t index, hrgb color) {
-        _vec[index] = color.r;
-        _vec[index + 1] = color.g;
-        _vec[index + 2] = color.b;
+        _data[index] = color.r;
+        _data[index + 1] = color.g;
+        _data[index + 2] = color.b;
     }
 
     void TextureBase<float>::setPixel(size_t x, size_t y, hrgba color) {
         const size_t index = getIndex(x, y);
-        _vec[index] = color.r;
-        _vec[index + 1] = color.g;
-        _vec[index + 2] = color.b;
-        _vec[index + 3] = color.a;
+        _data[index] = color.r;
+        _data[index + 1] = color.g;
+        _data[index + 2] = color.b;
+        _data[index + 3] = color.a;
     }
 
     void TextureBase<float>::setPixel(size_t index, hrgba color) {
-        _vec[index] = color.r;
-        _vec[index + 1] = color.g;
-        _vec[index + 2] = color.b;
-        _vec[index + 3] = color.a;
+        _data[index] = color.r;
+        _data[index + 1] = color.g;
+        _data[index + 2] = color.b;
+        _data[index + 3] = color.a;
     }
 
     void TextureBase<float>::init() {
